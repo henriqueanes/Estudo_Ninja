@@ -1,0 +1,36 @@
+package desafio;
+
+public class Uchiha extends Ninja {
+
+    private String specialHabilty;
+
+
+    public Uchiha() {
+
+    }
+
+    public Uchiha(String name, int age, String mission, String difficultyLevel, String missionStatus, String specialHabilty) {
+        super(name, age, mission, difficultyLevel, missionStatus);
+        this.specialHabilty = specialHabilty;
+    }
+
+
+    @Override
+    public void showInformations() {
+        System.out.println("Nome do ninja: " + getName() + ", Idade do ninja: " + getAge() +
+                           ", Missao do ninja: " + getMission() + ", Dificuldade da missao: " + getDifficultyLevel() +
+                           ", Status da missao: " + getMissionStatus() + ", Habilidade especial: " + specialHabilty);
+    }
+
+    public void showSpecialHability() {
+        System.out.println("A habilidade especial do ninja " + getName() + " é " + specialHabilty + "!");
+    }
+
+    public String getSpecialHabilty() {
+        return specialHabilty;
+    }
+
+    public void setSpecialHabilty(String specialHabilty) {
+        this.specialHabilty = specialHabilty;
+    }
+}
