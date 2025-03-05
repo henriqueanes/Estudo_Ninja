@@ -1,0 +1,152 @@
+package desafio;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Scanner;
+
+public class DesafioMain {
+
+    public static void main(String[] args) {
+
+        showHeader();
+        Scanner scanner = new Scanner(System.in);
+        int option = scanner.nextInt();
+        System.out.println();
+
+        short arraySize = 4;
+        short arrayPosition = 0;
+        Uchiha[] arrayNinjas = new Uchiha[arraySize];
+
+        while(option != 4) {
+            switch (option) {
+                case 1:
+                    if(arrayPosition < arraySize) {
+                        arrayNinjas[arrayPosition++] = insertUchiha(scanner);
+
+                        System.out.println("Ninja cadastrado com sucesso!");
+
+                        showHeader();
+                        option = scanner.nextInt();
+                        System.out.println();
+                    } else {
+                        System.out.println("Nao é possivel cadastrar mais ninjas, a academia ja esta lotada!");
+
+                        showHeader();
+                        option = scanner.nextInt();
+                        System.out.println();
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Listar ninjas e suas caracteristicas:");
+
+                    if (Arrays.stream(arrayNinjas).filter(Objects::nonNull).findAny().isEmpty()) {
+                        System.out.println("Primeiro insira um ninja!");
+                    } else {
+                        Arrays.stream(arrayNinjas)
+                                .filter(Objects::nonNull)
+                                .forEach(ninja -> System.out.println(
+                                                "Nome do ninja: " + ninja.getName() + ", Idade do ninja: " + ninja.getAge() +
+                                                ", Missao: " + ninja.getMission() + ", Rank da missao: " + ninja.getDifficultyLevel() +
+                                                ", Status: " + ninja.getMissionStatus() + ", Habilidade especial: " + ninja.getSpecialHabilty()
+                                ));
+                    }
+
+//                    for(Uchiha ninja : arrayNinjas) {
+//                        if(ninja != null) {
+//                            System.out.println(
+//                                                "Nome do ninja: " + ninja.getName() + ", Idade do ninja: " + ninja.getAge() +
+//                                                ", Missao: " + ninja.getMission() + ", Rank da missao: " + ninja.getDifficultyLevel() +
+//                                                ", Status: " + ninja.getMissionStatus() + ", Habilidade especial: " + ninja.getSpecialHabilty());
+//                        } else {
+//                            System.out.println("Primeiro insira um ninja!");
+//                        }
+//                    }
+
+                    showHeader();
+                    option = scanner.nextInt();
+                    System.out.println();
+
+                    break;
+
+                case 3:
+                    System.out.println("Atualizar habilidade especial de um ninja");
+
+                    if (Arrays.stream(arrayNinjas).filter(Objects::nonNull).findAny().isEmpty()) {
+                        System.out.println("Primeiro insira um ninja!");
+                    } else {
+                        Arrays.stream(arrayNinjas)
+                                .filter(Objects::nonNull)
+                                .forEach(ninja -> {
+                                    System.out.println("O ninja " + ninja.getName() + " tem a habilidade especial " + ninja.getSpecialHabilty() + ", deseja atualizar esta habilidade? (Responda com 'S' para Sim e 'N' para Nao)");
+
+                                    String resposta = scanner.next();
+
+                                    scanner.nextLine(); // Inserido para que o scanner possa ler a proxima entrada
+
+                                    if(resposta.equalsIgnoreCase("s")) {
+                                        System.out.println("Digite qual sera a nova habilidade especial do ninja: " + ninja.getName());
+                                        String novaHabilidade = scanner.nextLine();
+                                        ninja.setSpecialHabilty(novaHabilidade);
+                                    }
+                                });
+
+                        System.out.println("Habilidades especiais atualizadas com sucesso!");
+                    }
+
+                    showHeader();
+                    option = scanner.nextInt();
+                    System.out.println();
+
+                    break;
+
+                case 4:
+                    System.out.println("O sistema sera encerrado!");
+                    break;
+
+                default:
+                    System.out.println("Opçao invalida!");
+
+                    showHeader();
+                    option = scanner.nextInt();
+                    System.out.println();
+
+                    break;
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static Uchiha insertUchiha(Scanner scanner) {
+        System.out.println("Informe as caracteristicas do ninja a ser cadastrado:");
+
+        Uchiha ninjaUchiha = new Uchiha();
+
+        System.out.println("Informe o nome:");
+        scanner.nextLine(); // Inserido para que o scanner possa ler a proxima entrada
+        ninjaUchiha.setName(scanner.nextLine());
+        System.out.println("Informe a idade:");
+        ninjaUchiha.setAge(scanner.nextInt());
+        System.out.println("Informe qual é a missao:");
+        scanner.nextLine(); // Inserido para que o scanner possa ler a proxima entrada
+        ninjaUchiha.setMission(scanner.nextLine());
+        System.out.println("Qual o rank da missao:");
+        ninjaUchiha.setDifficultyLevel(scanner.nextLine());
+        System.out.println("Qual o status da missao:");
+        ninjaUchiha.setMissionStatus(scanner.nextLine());
+        System.out.println("Qual é a habilidade especial deste ninja:");
+        ninjaUchiha.setSpecialHabilty(scanner.nextLine());
+
+        return ninjaUchiha;
+    }
+
+    private static void showHeader() {
+        System.out.println("===== Menu Ninja =====");
+        System.out.println("1. Cadastrar Ninja");
+        System.out.println("2. Listar Ninjas e suas caracteristicas");
+        System.out.println("3. Atualizar habilidade especial de um ninja");
+        System.out.println("4. Sair");
+        System.out.print("Escolha uma opção: ");
+    }
+}
