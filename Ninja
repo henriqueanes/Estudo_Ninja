@@ -1,0 +1,67 @@
+package desafio;
+
+public class Ninja {
+
+    private String name;
+    private int age;
+    private String mission;
+    private String difficultyLevel;
+    private String missionStatus;
+
+
+    public Ninja() {
+
+    }
+
+    public Ninja(String name, int age, String mission, String difficultyLevel, String missionStatus) {
+        this.name = name;
+        this.age = age;
+        this.mission = mission;
+        this.difficultyLevel = difficultyLevel;
+        this.missionStatus = missionStatus;
+    }
+
+    public void showInformations() {
+        System.out.println("Nome do ninja: " + name + ", Idade do ninja: " + ", Missao do ninja: " + mission + ", Dificuldade da missao: " + difficultyLevel + ", Status da missao: " + missionStatus);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getMission() {
+        return mission;
+    }
+
+    public void setMission(String mission) {
+        this.mission = mission;
+    }
+
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public String getMissionStatus() {
+        return missionStatus;
+    }
+
+    public void setMissionStatus(String missionStatus) {
+        this.missionStatus = missionStatus;
+    }
+}
